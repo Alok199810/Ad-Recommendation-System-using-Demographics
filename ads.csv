@@ -1,0 +1,11 @@
+ad_id,category,target_age_group,target_gender,target_income_level
+101,Sports,26-35,M,Low
+102,Horror,26-35,F,Medium
+103,Horror,26-35,F,Medium
+104,Horror,26-35,M,Low
+105,Action,36-50,M,Medium
+106,Horror,26-35,F,Medium
+107,Action,18-25,F,Low
+108,Comedy,26-35,F,Low
+109,Drama,36-50,F,High
+110,Comedy,18-25,M,Low
