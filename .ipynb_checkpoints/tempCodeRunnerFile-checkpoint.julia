@@ -1,0 +1,33 @@
+# Generate user_demographics.csv
+import pandas as pd
+
+# Create data
+user_data = {
+    "user_id": [1, 2],
+    "age": [25, 30],
+    "gender": ["M", "F"],
+    "location": ["New York", "Los Angeles"],
+    "income_level": ["High", "Medium"]
+}
+pd.DataFrame(user_data).to_csv("user_demographics.csv", index=False)
+
+# Generate watch_history.csv
+watch_data = {
+    "user_id": [1, 2],
+    "recently_watched_categories": ["Sports|Action", "Drama|Romance"],
+    "watch_duration": [120, 90],
+    "watch_frequency": ["Daily", "Weekly"]
+}
+pd.DataFrame(watch_data).to_csv("watch_history.csv", index=False)
+
+# Generate ads.csv
+ad_data = {
+    "ad_id": [101, 102],
+    "category": ["Sports", "Drama"],
+    "target_age_group": ["18-35", "25-45"],
+    "target_gender": ["M", "F"],
+    "target_income_level": ["High", "Medium"]
+}
+pd.DataFrame(ad_data).to_csv("ads.csv", index=False)
+
+print("CSV files generated!")

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Prediction Tool</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container Styles */
+        .container {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        /* Heading */
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #4facfe;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #3589eb;
+        }
+
+        /* Prediction Result */
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f0f8ff;
+            border: 1px solid #4facfe;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ad Prediction Tool</h1>
+        <form id="predict-form">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required />
+
+            <label for="gender">Gender (1 for Male, 0 for Female):</label>
+            <input type="number" id="gender" name="gender" placeholder="Enter your gender" required />
+
+            <label for="watchDuration">Watch Duration (in seconds):</label>
+            <input type="number" id="watchDuration" name="watchDuration" placeholder="Enter watch duration" required />
+
+            <button type="submit">Predict Ad</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('predict-form');
+const resultDiv = document.getElementById('result');
+
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const age = document.getElementById('age').value;
+    const gender = document.getElementById('gender').value;
+    const watchDuration = document.getElementById('watchDuration').value;
+
+    try {
+        const response = await fetch('http://localhost:3000/predict-ad', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                age: parseInt(age),
+                gender: parseInt(gender),
+                watchDuration: parseInt(watchDuration),
+            }),
+        });
+
+        const data = await response.json();
+        resultDiv.textContent = data.predictedAd || 'Prediction failed.';
+    } catch (error) {
+        resultDiv.textContent = 'Error occurred while predicting.';
+        console.error(error);
+    }
+});
+
+    </script>
+</body>
+</html>

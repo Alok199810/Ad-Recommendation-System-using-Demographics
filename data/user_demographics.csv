@@ -1,0 +1,11 @@
+user_id,age,gender,location,income_level
+1,32,M,Houston,Low
+2,22,M,Houston,High
+3,48,F,Houston,Medium
+4,18,F,Houston,Low
+5,31,M,New York,Low
+6,37,M,Houston,Medium
+7,47,M,Houston,High
+8,24,M,Chicago,High
+9,30,F,Los Angeles,High
+10,20,M,New York,High
